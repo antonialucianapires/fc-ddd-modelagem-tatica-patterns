@@ -2,10 +2,10 @@ import type Address from "./address";
 
 export default class Customer {
 
-    _id: string;
-    _name: string;
-    _address!: Address;
-    _active: boolean = true;
+    private _id: string;
+    private _name: string;
+    private _address!: Address;
+    private _active: boolean = true;
 
     constructor(id: string, name: string) {
         this._id = id;
@@ -23,12 +23,21 @@ export default class Customer {
         }
     }
 
+    get name(): string {
+        return this._name;
+    }
+
     changeName(name: string) {
         this._name = name;
+        this.validate();
     }
 
     activate() {
         this._active = true;
+    }
+
+    isActive(): boolean {
+        return this._active;
     }
 
     deactivate() {
